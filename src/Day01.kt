@@ -1,21 +1,28 @@
+import kotlin.math.absoluteValue
+
+const val START = 50
+const val DIAL_NUMBERS = 100
+
+private fun Int.rotate(clicks: Int) = (this + clicks).mod(DIAL_NUMBERS)
+
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
+
+    fun parse(input: String) = input.lines()
+        .map { (if (it[0] == 'L') -1 else 1) * it.substring(1).toInt() }
+        .toList()
+
+    fun part1(input: List<Int>) = input.scan(START) { dialPosition, clicks -> dialPosition.rotate(clicks) }
+        .count { it == 0 }
+
+    fun part2(input: List<Int>) = input.fold(START to 0L) { (dialPosition, zeroCount), clicks ->
+        val fullCrossings = ((dialPosition + clicks) / DIAL_NUMBERS).absoluteValue
+        val zeroCrossing = if (dialPosition != 0 && clicks <= -dialPosition) 1L else 0L
+
+        dialPosition.rotate(clicks) to zeroCount + fullCrossings + zeroCrossing
     }
+        .second
 
-    fun part2(input: List<String>): Int {
-        return input.size
-    }
-
-    // Test if implementation meets criteria from the description, like:
-    check(part1(listOf("test_input")) == 1)
-
-    // Or read a large test input from the `src/Day01_test.txt` file:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
-
-    // Read the input from the `src/Day01.txt` file.
-    val input = readInput("Day01")
+    val input = parse(readInput("Day01"))
     part1(input).println()
     part2(input).println()
 }
