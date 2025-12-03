@@ -19,8 +19,6 @@ fun main() {
 
     fun part2(input: List<LongRange>) = input.filterByPattern(REPEATED_AT_LEAST_TWICE).sum()
 
-
-    // Read the input from the `src/Day01.txt` file.
     val input = parse(readInput("Day02"))
     part1(input).println()
     part2(input).println()
