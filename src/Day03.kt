@@ -18,7 +18,7 @@ fun main() {
 
     fun part2(input: List<List<Int>>) = input.sumOf { maxJoltage(it, 12).toLong() }
 
-    val input = parse(readInput("Day02"))
+    val input = parse(readInput("Day03"))
     part1(input).println()
     part2(input).println()
 }
