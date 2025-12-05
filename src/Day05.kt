@@ -47,10 +47,8 @@ data class Year2025Day05(
         private fun Collection<LongRange>.merge(): List<LongRange> {
             val sortedIntersections = this.usedIntersections()
 
-            if (sortedIntersections.isEmpty()) {
-                return emptyList()
-            } else if (sortedIntersections.size == 1) {
-                return listOf(sortedIntersections.first())
+            if (sortedIntersections.size <= 1) {
+                return sortedIntersections
             }
 
             val nonConsecutiveIndices = (1..<sortedIntersections.size)
