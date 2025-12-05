@@ -1,4 +1,4 @@
-val RANGE_PATTERN = "(\\d+)-(\\d+)".toRegex()
+private val RANGE_PATTERN = "(\\d+)-(\\d+)".toRegex()
 val REPEATED_ONCE = "(\\d+)\\1".toRegex()
 val REPEATED_AT_LEAST_TWICE = "(\\d+)\\1+".toRegex()
 
